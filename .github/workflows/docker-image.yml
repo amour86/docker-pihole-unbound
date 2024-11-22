@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker buildx build --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/amd64 -t amour86/pihole-unbound:latesttest --push .
+      run: docker buildx build --file one-container/pihole-unbound/Dockerfile  --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/amd64 -t amour86/pihole-unbound:latesttest --push .
