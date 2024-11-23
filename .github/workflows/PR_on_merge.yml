@@ -33,5 +33,5 @@ jobs:
       run: |
           ls -alR
           PIHOLE_VER=`cat one-container/pihole-unbound/VERSION`
-          docker buildx build --file one-container/pihole-unbound/Dockerfile  --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/arm/v7,linux/arm64/v8,linux/amd64  -t amour86/pihole-unbound:test$PIHOLE_VER --push . 
-          docker buildx build --file one-container/pihole-unbound/Dockerfile  --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/arm/v7,linux/arm64/v8,linux/amd64  -t amour86/pihole-unbound:testlatest --push .
+          docker buildx build --file one-container/pihole-unbound/Dockerfile  --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/amd64  -t amour86/pihole-unbound:$PIHOLE_VER --push . 
+          docker buildx build --file one-container/pihole-unbound/Dockerfile  --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/amd64  -t amour86/pihole-unbound:latest --push .
