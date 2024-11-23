@@ -1,8 +1,10 @@
-name: Docker Image CI
+name: Check New Pi-Hole Release CI
 
+# on:
+#   workflow_dispatch:
 on:
-  workflow_dispatch:
-
+  schedule:
+    - cron: "0 20 * * *"  
 jobs:
 
   build:
