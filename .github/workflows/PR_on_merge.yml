@@ -1,4 +1,4 @@
-name: Build Docker Image CI on Merge
+name: Build Docker Image CI on Push
 
 on:
   # pull_request:
@@ -8,6 +8,8 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+    - 'VERSION'
 jobs:
   on_push:
     # if: github.event.pull_request.merged == true
