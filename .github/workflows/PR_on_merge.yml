@@ -28,7 +28,7 @@ jobs:
     #ecr: # optional, default is auto
     # Log out from the Docker registry at the end of a job
     #logout: # optional, default is true
-    
+    - uses: actions/checkout@v4
     - name: Build the Docker image and push
       run: |
           ls -alR
