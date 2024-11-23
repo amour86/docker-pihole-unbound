@@ -27,5 +27,24 @@ jobs:
     #logout: # optional, default is true
           
     - uses: actions/checkout@v4
+    - name: Fetch release version
+      id: fetch-release
+      run: |
+          curl -sL https://api.github.com/repos/pi-hole/docker-pi-hole/releases/latest | \
+          jq -r ".tag_name" > one-container/pihole-unbound/VERSION
+    - name: Check for modified files
+      id: git-check
+      run: |
+          echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
+          echo ::set-output name=version::$(cat one-container/pihole-unbound/VERSION)
+    - name: Commit latest release version
+      if: steps.git-check.outputs.modified == 'true'
+      run: |
+          git config --global user.name 'Amr ElRefaie'
+          git config --global user.email 'amour86@users.noreply.github.com'
+          git commit -am "New release version on " + steps.fetch-release.output.version
+          git push
     - name: Build the Docker image
-      run: docker buildx build --file one-container/pihole-unbound/Dockerfile  --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/amd64 -t amour86/pihole-unbound:latesttest --push .
+      run: |
+          PIHOLE_VER=`cat one-container/pihole-unbound/VERSION`
+          docker buildx build --file one-container/pihole-unbound/Dockerfile  --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/amd64 -t amour86/pihole-unbound:latesttest --push .
