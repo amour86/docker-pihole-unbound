@@ -57,7 +57,7 @@ jobs:
             [1]: https://github.com/pi-hole/pi-hole
             [2]: https://github.com/peter-evans/create-pull-request
           labels: new release, automated pr
-          branch: main
+          branch: pi-hole-updates
     # - name: Build the Docker image
     #   run: |
     #       PIHOLE_VER=`cat one-container/pihole-unbound/VERSION`
