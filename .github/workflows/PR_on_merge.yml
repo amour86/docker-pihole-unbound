@@ -28,6 +28,7 @@ jobs:
     
     - name: Build the Docker image and push
       run: |
+          ls -alR
           PIHOLE_VER=`cat docker-pihole-unbound/one-container/pihole-unbound/VERSION`
           docker buildx build --file one-container/pihole-unbound/Dockerfile  --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/arm/v7,linux/arm64/v8,linux/amd64  -t amour86/pihole-unbound:test$PIHOLE_VER --push . 
           docker buildx build --file one-container/pihole-unbound/Dockerfile  --build-arg PIHOLE_VERSION=$PIHOLE_VER --platform linux/arm/v7,linux/arm64/v8,linux/amd64  -t amour86/pihole-unbound:testlatest --push .
