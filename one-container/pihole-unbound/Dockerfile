@@ -9,6 +9,7 @@ COPY one-container/pihole-unbound/lighttpd-external.conf /etc/lighttpd/external.
 COPY one-container/pihole-unbound/unbound-pihole.conf /etc/unbound/unbound.conf.d/pi-hole.conf
 COPY one-container/pihole-unbound/99-edns.conf /etc/dnsmasq.d/99-edns.conf
 RUN mkdir -p /etc/services.d/unbound
+RUN chmod +x /opt/unbound.sh
 COPY one-container/pihole-unbound/unbound-run /etc/services.d/unbound/run
 
 ENTRYPOINT /opt/unbound.sh
