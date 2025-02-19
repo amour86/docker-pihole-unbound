@@ -11,7 +11,7 @@ on:
     #paths:
     #- 'VERSION'
 jobs:
-  on_pull_requesr:
+  on_pull_request:
      if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
